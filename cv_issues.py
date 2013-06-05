@@ -85,7 +85,7 @@ if __name__ == '__main__':
     classifier = LogisticRegression # SVC # KNeighborsClassifier # 
     classifier_parameters = {}
     strategy = 1
-    save = False
+    save = True
     
     sizes = np.round(np.linspace(cv*2, N, n_sizes)).astype(np.int)
     
@@ -286,12 +286,12 @@ if __name__ == '__main__':
     plt.figure()
     plt.plot(sizes, correct_indep_bintest, 'k--', label='indep')
     plt.plot(sizes, correct_cv_bintest, 'k-', label='CV')
-    plt.title('p-value of the Binomial test of the sum of correct predictions (k=%d, iterations=%d)' % (cv,iterations))
+    plt.title('p-value of the Bin.test of the sum of correct pred. (k=%d, iterations=%d)' % (cv,iterations))
     plt.xlabel('dataset size ($N$) ')
     plt.legend()
     if save: plt.savefig('cv%d_d%d_binom_pvalue.pdf' % (cv, d))
 
-    # INCREASE!!??? of p-value of CV...
+    # Increase of p-value of CV
     plt.figure()
     plt.plot(sizes, (correct_cv_bintest - correct_indep_bintest) / correct_cv_bintest, 'k-')
     plt.xlabel('dataset size ($N$) ')
